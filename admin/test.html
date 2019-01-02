@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Coho Resource Book</title>
+	<!-- scripts -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- stylesheets -->
+	<link rel="stylesheet" href="/css/body.css">
+	<link rel="stylesheet" href="/css/sidebar.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/table.css">
+	<link rel="stylesheet" href="/css/form.css">
+
+	<!-- head elements -->
+</head>
+<body>
+
+<!-- left navbar -->
+<div class="sidebar">
+	<a href="/" id="sidebar_header">
+		<img src="/img/coho-off-white.png">
+		<h1>COHO RESOURCE BOOK</h1>
+	</a>
+	<ul class="sidebar_items_main">
+		<li>CATEGORIES</li>
+		<li><a href="/resources">RESOURCES</a></li>
+		<li>USERS</li>
+	</ul>
+
+	<ul class="sidebar_items_bottom">
+		<li class="sidebar_items_bottom_item">SETTINGS</li>
+		<li class="sidebar_items_bottom_item">SIGN OUT</li>
+	</ul>
+</div>
+
+<!-- main content -->
+<div class="main">
+	<div class="form_element">
+		<label id="categories_label" class="label">CATEGORIES</label>
+		<div>
+			<div><input type="checkbox" name="cat1" id="cat1" value="Cat 1"><label for="cat1">Cat 1</label></div>
+			<div><input type="checkbox" name="cat2" id="cat2" value="Cat 2"><label for="cat1">Cat 2</label></div>
+			<div><input type="checkbox" name="cat3" id="cat3" value="Cat 3"><label for="cat1">Cat 3</label></div>
+			<div><input type="checkbox" name="cat4" id="cat4" value="Cat 4"><label for="cat1">Cat 4</label></div>
+			<div><input type="checkbox" name="cat5" id="cat5" value="Cat 5"><label for="cat1">Cat 5</label></div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var sizing = function() {
+        var width = $('.sidebar').width();
+        var main = $('.main');
+        $('.sidebar_items_bottom_item').width(width - 20);
+        main.css('padding-left', (width + 40) + 'px');
+        main.width($(window).width() - width - 80 );
+    };
+
+    $(window).on('resize', sizing);
+    $(document).ready(sizing);
+</script>
+
+</body>
+</html>

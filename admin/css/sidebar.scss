@@ -1,0 +1,67 @@
+@import "colors";
+@import "mixins";
+
+
+.sidebar {
+  @include intrinsic(width, min-content);
+
+  height: 100vh;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+
+  overflow: hidden;
+  background-color: $secondary;
+  color: $light;
+
+  #sidebar_header {
+    background-color: $primary;
+    display: flex;
+
+    img {
+      margin: auto;
+      height: 70px;
+      padding: 15px;
+      width: auto;
+    }
+
+    h1 {
+      padding: 15px 15px 15px 0;
+      margin: auto;
+      font-size: 1.2em;
+      font-weight: 700;
+      color: $light;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    padding: 2px 0 2px 20px;
+    opacity: .8;
+
+    cursor: pointer;
+
+    @include transition (all, 0.2s, ease);
+  }
+
+  li:hover {
+    background-color: $secondary-lighter;
+    opacity: 1;
+  }
+
+  .sidebar_items_bottom {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    z-index: -1;
+  }
+
+  a {
+    color: $light;
+    text-decoration: none;
+  }
+}

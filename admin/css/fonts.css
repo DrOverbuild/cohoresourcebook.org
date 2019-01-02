@@ -1,0 +1,12 @@
+@font-face {
+  font-family: Unite;
+  font-weight: 500;
+  src: url(../font/Unite_500.otf) format("opentype");
+}
+@font-face {
+  font-family: Unite_Bold;
+  font-weight: 700;
+  src: url(../font/Unite_700.otf) format("opentype");
+}
+
+/*# sourceMappingURL=fonts.css.map */

@@ -1,0 +1,176 @@
+<script type="text/javascript">
+    editPage = true;
+</script>
+<div>
+    <h1 id="action_title" class="edit_page_header">{ACTION_TITLE}</h1>
+    <p style="display: {RESULT};" class="result_message">{ACTION_RESULT}</p>
+    <form class="edit_form" id="edit_form" action="edit.php" method="post">
+        <div class="form_element">
+            <label id="name_label" class="{NAME_REQUIRED} left_label" for="name">NAME</label>
+            <input id="name" name="name" type="text" style="width: 400px" placeholder="NAME" value="{PREV_NAME}">
+        </div>
+
+        <!-- CATEGORIES -->
+        <div class="form_element">
+            <label id="categories_label" class="left_label">CATEGORIES</label>
+            <fieldset class="multi-checkbox">
+                {CATEGORIES}
+            </fieldset>
+
+            <script type="text/javascript">
+
+            </script>
+        </div>
+
+        <!-- CATEGORIES -->
+        <div class="form_element">
+            <label id="counties_label" class="left_label">COUNTIES</label>
+            <fieldset class="multi-checkbox">
+                {COUNTIES}
+            </fieldset>
+
+            <script type="text/javascript">
+
+            </script>
+        </div>
+
+        <!--  TAGS  -->
+        <div class="form_element">
+            <div class="left_label">
+                <label id="tags_label" for="desc">TAGS</label>
+                <p>
+                    <small>Separate by space</small>
+                </p>
+            </div>
+            <div>
+                <input id="tags" name="tags" style="width: 400px;" value="{PREV_TAGS}">
+            </div>
+        </div>
+
+        <h4>CONTACT</h4>
+        {CONTACT}
+        <!--<div class="dynamic-form" id="contact">-->
+        <!--<div class="form_element" id="contact_0">-->
+        <!--<div class="left_label">-->
+        <!--<button class="delete_button" type="button" onclick="deleteContact(0)">DELETE</button>-->
+        <!--</div>-->
+        <!--<fieldset class="dynamic_fieldset contact">-->
+        <!--<select class="contact_input type" name="contact[0][type]">-->
+        <!--<option value="0">PHONE</option>-->
+        <!--<option value="1">EMAIL</option>-->
+        <!--<option value="2">WEBSITE</option>-->
+        <!--</select>-->
+        <!--<input type="text" class="contact_input name" placeholder="NAME" name="contact[0][name]">-->
+        <!--<input type="text" class="contact_input value" placeholder="VALUE" name="contact[0][value]">-->
+        <!--</fieldset>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="form_element" id="new_contact_container">-->
+        <!--<div class="left_label"></div>-->
+        <!--<button type="button" id="new_contact_button" onclick="addContact()">NEW CONTACT</button>-->
+        <!--</div>-->
+
+        <!--<div class="form_element" id="contact_TEMPLATE" style="display: none;">-->
+        <!--<div class="left_label">-->
+        <!--<button class="delete_button" type="button">DELETE</button>-->
+        <!--</div>-->
+        <!--<fieldset class="dynamic_fieldset contact">-->
+        <!--<select name="contact[0][type]">-->
+        <!--<option value="0">PHONE</option>-->
+        <!--<option value="1">EMAIL</option>-->
+        <!--<option value="2">WEBSITE</option>-->
+        <!--</select>-->
+        <!--<input type="text" class="contact_input name" placeholder="NAME" name="contact[0][name]">-->
+        <!--<input type="text" class="contact_input value" placeholder="VALUE" name="contact[0][value]">-->
+        <!--</fieldset>-->
+        <!--</div>-->
+
+        <h4>LOCATIONS</h4>
+        {ADDRESSES}
+
+        <h4>INFORMATION</h4>
+
+        <!--  SERVICES  -->
+        <div class="form_element">
+            <label id="services_label" class="left_label" for="services">SERVICES</label>
+            <textarea id="services" name="services" style="width: 100%; height: 300px;">{PREV_SERVICES}</textarea>
+        </div>
+
+        <!--  DOCUMENTATION  -->
+        <div class="form_element">
+            <label id="documentation_label" class="left_label" for="documentation">DOCUMENTATION</label>
+            <textarea id="documentation" name="documentation"
+                      style="width: 100%; height: 300px;">{PREV_DOCUMENTATION}</textarea>
+        </div>
+
+        <!--  HOURS  -->
+        <div class="form_element">
+            <label id="hours_label" class="left_label" for="hours">HOURS</label>
+            <textarea id="hours" name="hours" style="width: 100%; height: 300px;">{PREV_HOURS}</textarea>
+        </div>
+
+        <!--  DESCRIPTION  -->
+        <div class="form_element">
+            <label id="desc_label" class="left_label" for="desc">DESCRIPTION</label>
+            <textarea id="desc" name="desc" style="width: 100%; height: 300px;">{PREV_DESC}</textarea>
+        </div>
+
+        <!-- Multiple emails -->
+
+        <!-- Multiple websites -->
+
+        <!-- Multiple phones -->
+
+        <!-- Multiple locations -->
+
+        <div class="form_element">
+            <div class="left_label"></div>
+            <div style="font-size: 1.0rem">
+                <p>Markdown is supported.</p>
+                <p>
+                <pre>*Single Asterisks*</pre>
+                is <em>italic</em>.</p>
+                <p>
+                <pre>**Double Asterisks**</pre>
+                is <strong>bold</strong>.</p>
+                <p>Use Asterisks for bullet lists:</p>
+
+                <pre>* Item 1
+* Item 2
+* Item 3</pre>
+
+                <p>Will become</p>
+
+                <ul>
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                </ul>
+
+                <p>And similarily,</p>
+
+                <pre>1. Item 1
+2. Item 2
+3. Item 3</pre>
+
+                <p>Will become</p>
+
+                <ol>
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                </ol>
+            </div>
+        </div>
+
+        {RESOURCES_ID}
+    </form>
+</div>
+
+<div class="the_bottom">
+    <div class="bottom_elements">
+        <button id="cancel" onclick="window.location='../../../index.php'">CANCEL</button>
+        <button id="save" type="submit" form="edit_form">SAVE</button>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+// THIS WILL BE AVAILABLE IN EVERY CSS FILE
+
+@import "colors";
+@import "fonts";
+
+body {
+  margin: 0;
+
+  background-color: $main-bkgd;
+  color: $secondary;
+
+  font-family: 'Unite', sans-serif;
+  font-weight: 100;
+  font-size: 1.4em;
+}
+
+h1 {
+  font-size: 2.1rem;
+  text-transform: uppercase;
+  font-weight: 100;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.content {
+  z-index: 1;
+}

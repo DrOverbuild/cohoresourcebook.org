@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "Unite";
+  font-style: normal;
+  src: local("Brandon Grotesque"), url(../font/Unite_500.otf) format("opentype");
+}
+@font-face {
+  font-family: "Unite Bold";
+  font-style: normal;
+  font-weight: bold;
+  src: local("Brandon Grotesque Bold"), url(../font/Unite_700.otf) format("opentype");
+}
+body {
+  margin: 0;
+  background-color: #DEEAEA;
+  color: #1E3E3F;
+  font-family: "Unite", sans-serif;
+  font-weight: 100;
+  font-size: 1.4em;
+}
+
+h1 {
+  font-size: 2.1rem;
+  text-transform: uppercase;
+  font-weight: 100;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.content {
+  z-index: 1;
+}
+
+/*# sourceMappingURL=body.css.map */

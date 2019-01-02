@@ -1,0 +1,35 @@
+<script type="text/javascript">
+    editPage = true;
+</script>
+
+<div>
+	<h1 id="action_title" class="edit_page_header">{ACTION_TITLE}</h1>
+	<p style="display: {RESULT};" class="result_message">{ACTION_RESULT}</p>
+	<form class="edit_form" id="edit_form" action="edit.php" method="post">
+		<div class="form_element">
+			<label id="name_label" class="{NAME_REQUIRED} left_label" for="name">NAME</label>
+			<input id="name" name="name" type="text" style="width: 400px" placeholder="NAME" value="{PREV_NAME}">
+		</div>
+
+		<div class="form_element">
+			<label id="desc_label" class="{DESC_REQUIRED} left_label" for="desc">DESCRIPTION</label>
+			<textarea id="desc" name="desc" style="width: 100%; height: 300px;">{PREV_DESC}</textarea>
+		</div>
+
+		<div class="form_element">
+			<label id="icon_label" class="left_label" for="icon">ICON</label>
+			<select id="icon" name="icon">
+				{ICONS}
+			</select>
+		</div>
+
+		{CATEGORY_ID}
+	</form>
+</div>
+
+<div class="the_bottom">
+	<div class="bottom_elements">
+		<button id="cancel" onclick="window.location='../../../index.php'">CANCEL</button>
+		<button id="save" type="submit" form="edit_form">SAVE</button>
+	</div>
+</div>

@@ -1,0 +1,15 @@
+<div class="form_element" id="contact_{ID}">
+	<div class="left_label">
+		<button class="delete_button" type="button" onclick="deleteContact({ID})">DELETE</button>
+	</div>
+	<div class="dynamic_fieldset contact">
+		<select class="contact_input type" name="{NAME_CONT_TYPE}">
+			<option value="0" {PHONE_SELECTED}>PHONE</option>
+			<option value="1" {EMAIL_SELECTED}>EMAIL</option>
+			<option value="2" {WEBSITE_SELECTED}>WEBSITE</option>
+			<option value="3" {FAX_SELECTED}>FAX</option>
+		</select>
+		<input type="text" class="contact_input name"  placeholder="NAME"  name="{NAME_CONT_NAME}" value="{CONT_NAME}">
+		<input type="text" class="contact_input value" placeholder="VALUE" name="{NAME_CONT_VALUE}" value="{CONT_VALUE}">
+	</div>
+</div>

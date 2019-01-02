@@ -1,0 +1,14 @@
+<div class="form_element" id="address_{ID}">
+	<div class="left_label">
+		<button class="delete_button" type="button" onclick="deleteAddress({ID})">DELETE</button>
+	</div>
+	<fieldset class="dynamic_fieldset">
+		<input type="text"   class="address_input desc" placeholder="DESCRIPTION"  name="{NAME_DESC}" value="{ADDR_DESC}">
+		<input type="text"   class="address_input street1" placeholder="STREET 1"  name="{NAME_STR1}"     value="{ADDR_STR1}">
+		<input type="text"   class="address_input street2" placeholder="STREET 2"  name="{NAME_STR2}"     value="{ADDR_STR2}">
+		<input type="text"   class="address_input city"    placeholder="CITY"      name="{NAME_CITY}"     value="{ADDR_CITY}">
+		<input type="text"   class="address_input state"   placeholder="STATE"     name="{NAME_STATE}"    value="{ADDR_STATE}">
+		<input type="text"   class="address_input zip"     placeholder="ZIP"       name="{NAME_ZIP}"      value="{ADDR_ZIP}">
+		<input type="hidden" class="address_input id"                              name="{NAME_ID}"       value="{ADDR_ID}">
+	</fieldset>
+</div>
