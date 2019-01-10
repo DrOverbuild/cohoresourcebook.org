@@ -231,6 +231,14 @@ input::placeholder {
   display: flex;
 }
 
+#icon_preview {
+  display: block;
+  padding-top: 10px;
+  height: 60px;
+  max-height: 60px;
+  width: auto;
+}
+
 .the_bottom {
   position: fixed;
   width: 100%;

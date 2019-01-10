@@ -126,5 +126,7 @@ $editForm->loadComponents("ACTION_RESULT", $actionResult);
 $page->loadComponent('content', $editForm);
 
 $page->addHeadElement("<script type='text/javascript' src='/js/preventUnload.js'></script>");
+$page->addHeadElement("<script type='text/javascript' src='/js/loadicon.js'></script>");
+
 
 $page->show();

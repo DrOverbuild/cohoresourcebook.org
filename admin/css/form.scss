@@ -251,6 +251,14 @@ input {
   display: flex;
 }
 
+///////     ICON PREVIEW ELEMENTS     ///////
+#icon_preview {
+  display: block;
+  padding-top: 10px;
+  height: 60px;
+  max-height: 60px;
+  width: auto;
+}
 
 ///////     BOTTOM ELEMENTS     ///////
 .the_bottom {

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    console.log("Document ready prevent unload.");
     $('input,textarea,select').on("change", function () {
         $(window).on("beforeunload", function () {
            return "You have made changes. Are you sure you want to leave?";
