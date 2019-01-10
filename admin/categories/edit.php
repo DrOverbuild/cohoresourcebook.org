@@ -56,14 +56,14 @@ if (isset($_GET['id'])) {
 
 // load icons for dropdown
 $icons = "<option>None</option>";
-$iconsDir = $_SERVER['DOCUMENT_ROOT'].'/icon/';
+$iconsDir = $_SERVER['DOCUMENT_ROOT'].'/icon/categories';
 $iconsArr = array_diff(scandir($iconsDir), array('..', '.'));
 foreach ($iconsArr as $iconFileName) {
     $iconName = basename($iconFileName, ".svg");
-    if ($icon == $iconName) {
-        $icons = $icons . "<option selected='selected'>" . $iconName . "</option>";
+    if ($icon == 'categories/'.$iconName) {
+        $icons = $icons . "<option selected='selected' value='categories/" . $iconName . "'>" . $iconName . "</option>";
     } else {
-        $icons = $icons . "<option>" . $iconName . "</option>";
+        $icons = $icons . "<option value='categories/" . $iconName . "'>" . $iconName . "</option>";
     }
 }
 

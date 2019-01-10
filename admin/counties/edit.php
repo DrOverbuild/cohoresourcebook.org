@@ -24,7 +24,7 @@ $editForm = new EditForm($_SERVER['DOCUMENT_ROOT'] . '/dynamics/html/form/catego
 
 $actionTitle = "NEW COUNTY";
 
-$name = $desc = "";
+$name = $desc = $icon = "";
 
 $required = false;
 
@@ -53,6 +53,18 @@ if (isset($_GET['id'])) {
 	}
 }
 
+// load icons for dropdown
+$icons = "<option>None</option>";
+$iconsDir = $_SERVER['DOCUMENT_ROOT'].'/icon/counties';
+$iconsArr = array_diff(scandir($iconsDir), array('..', '.'));
+foreach ($iconsArr as $iconFileName) {
+	$iconName = basename($iconFileName, ".svg");
+	if ($icon == 'counties/'.$iconName) {
+		$icons = $icons . "<option selected='selected' value='counties/" . $iconName . "'>" . $iconName . "</option>";
+	} else {
+		$icons = $icons . "<option value='counties/" . $iconName . "'>" . $iconName . "</option>";
+	}
+}
 
 if (isset($_POST['name']) && isset($_POST['desc'])) {
 	if (empty($_POST['name'])) {
@@ -67,6 +79,10 @@ if (isset($_POST['name']) && isset($_POST['desc'])) {
 		$required = true;
 	} else {
 		$desc = $_POST['desc'];}
+
+	if(!empty($_POST['icon'])) {
+		$icon = $_POST['icon'];
+	}
 
 	if (!$required) { // POST SUCCESS
 		$countyMan = new CountiesManager($manager);
@@ -99,11 +115,14 @@ $editForm->loadComponents("PREV_DESC", $desc);
 $editForm->loadComponents("ACTION_TITLE", $actionTitle);
 $editForm->loadComponents("CATEGORY_ID", $idElement);
 
+$editForm->loadComponents("ICONS", $icons);
+
 $editForm->loadComponents("RESULT", $result);
 $editForm->loadComponents("ACTION_RESULT", $actionResult);
 
 $page->loadComponent('content', $editForm);
 
 $page->addHeadElement("<script type='text/javascript' src='/js/preventUnload.js'></script>");
+$page->addHeadElement("<script type='text/javascript' src='/js/loadicon.js'></script>");
 
 $page->show();
