@@ -12,7 +12,7 @@ namespace api\model;
 class County {
 	public $name;
 	public $description;
-
+	public $icon;
 	public $id;
 
 	/** @var Resource[] */
@@ -24,10 +24,11 @@ class County {
 	 * @param $description
 	 * @param $id
 	 */
-	public function __construct($name, $description, $id) {
+	public function __construct($name, $description, $icon, $id) {
 		$this->name = $name;
 		$this->description = $description;
 		$this->id = $id;
+		$this->icon = $icon;
 	}
 
 	public function toArray($withResources = true) {
@@ -40,11 +41,11 @@ class County {
 			}
 		}
 
-		return ["name" => $this->name, "description" => $this->description, "id" => $this->id, "resources" => $resourceArr];
+		return ["name" => $this->name, "description" => $this->description, "icon" => $this->icon, "id" => $this->id, "resources" => $resourceArr];
 	}
 
 	public static function countyFromArray($arr) {
-		$cat = new County($arr['name'], $arr['description'], intval($arr['id']));
+		$cat = new County($arr['name'], $arr['description'], $arr['icon'], intval($arr['id']));
 
 		if (isset($arr['resources'])) {
 			$cat->resources = Resource::resourcesFromArr($arr['resources']);

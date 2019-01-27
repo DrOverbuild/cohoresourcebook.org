@@ -52,8 +52,9 @@ class CountyServer extends Server {
 				$name = $row['name'];
 				$id = $row['id'];
 				$desc = $row['description'];
+				$icon = $row['icon'];
 
-				$county = new County($name, $desc, $id);
+				$county = new County($name, $desc, $icon, $id);
 
 				if ($withResources) {
 					$resourceConn = new Connection();
@@ -89,8 +90,9 @@ class CountyServer extends Server {
 				$name = $this->defaultIfNull($row,'name', '');
 				$id = intval($row['id']);
 				$desc = $this->defaultIfNull($row,'description', '');
+				$icon = $row['icon'];
 
-				$county = new County($name, $desc, $id);
+				$county = new County($name, $desc, $icon, $id);
 
 				if($loadResources) {
 					$resourceServer = new ResourceServer($this->conn, $this);

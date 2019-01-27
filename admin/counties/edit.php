@@ -39,6 +39,7 @@ if (isset($_GET['id'])) {
 	$county = $countyMan->loadCounty(intval($_GET['id']));
 	$name = $county['name'];
 	$desc = $county['desc'];
+	$icon = $county['icon'];
 	$actionTitle = "EDIT COUNTY — ".$name;
 	$idElement = '<input type="hidden" id="county_id" name="id" value="' . $_GET['id'] . '">';
 
@@ -87,7 +88,7 @@ if (isset($_POST['name']) && isset($_POST['desc'])) {
 	if (!$required) { // POST SUCCESS
 		$countyMan = new CountiesManager($manager);
 		$county = ['name' => $name,
-			'desc' => $desc];
+			'desc' => $desc, 'icon' => $icon];
 		if (isset($_POST['id'])) {
 			// edit category
 			$countyMan->editCounty(intval($_POST['id']), $county);

@@ -25,8 +25,8 @@ class CountiesManager {
 			return;
 		}
 
-		$stmt = $this->manager->conn->prepare('INSERT INTO `counties` (name, description) VALUES (?, ?)');
-		$stmt->bind_param('ss', $county['name'], $county['desc']);
+		$stmt = $this->manager->conn->prepare('INSERT INTO `counties` (name, description, icon) VALUES (?, ?, ?)');
+		$stmt->bind_param('sss', $county['name'], $county['desc'], $county['icon']);
 		$stmt->execute();
 
 		if (!empty($stmt->error)) {
@@ -43,9 +43,9 @@ class CountiesManager {
 		}
 
 		$stmt = $this->manager->conn->prepare('UPDATE `counties` 
-			SET `name` = ?, `description` = ?  
+			SET `name` = ?, `description` = ?, `icon` = ?  
 			WHERE `counties`.`id` = ?');
-		$stmt->bind_param('ssi', $county['name'], $county['desc'], $id);
+		$stmt->bind_param('sssi', $county['name'], $county['desc'], $county['icon'], $id);
 		$stmt->execute();
 	}
 
@@ -57,7 +57,7 @@ class CountiesManager {
 
 		while ($row = $result->fetch_assoc()) {
 			if (isset($row['id'])){
-				return ['name'=>$row['name'], 'desc'=>$row['description']];
+				return ['name'=>$row['name'], 'desc'=>$row['description'], 'icon' => $row['icon']];
 			}
 		}
 	}
