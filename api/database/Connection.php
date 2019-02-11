@@ -41,4 +41,33 @@ class Connection {
 			return false;
 		}
 	}
+
+	function verify_key($key, $secret) {
+
+		$stmt = $this->prepare('SELECT `secret` FROM `api_keys` WHERE `value` = ?');
+		$stmt->bind_param('s', $key);
+		$stmt->execute();
+		$result = $stmt->get_result();
+
+		if ($result->num_rows == 1) {
+			$hash = $result->fetch_assoc()['secret'];
+
+			if (password_verify($secret, $hash)) {
+				return true;
+			}
+
+		}
+
+		return false;
+//		$stmt = $this->prepare('SELECT `id` FROM `api_keys` WHERE `name` = ? AND `value` = ? AND `secret` = ?');
+//		$stmt->bind_param('sss', $name, $key, $secret_encoded);
+//		$stmt->execute();
+//		$result = $stmt->get_result();
+//
+//		if ($result->num_rows == 1 ) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+	}
 }

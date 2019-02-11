@@ -22,6 +22,7 @@ class DBManager {
 	// users
 	var $users = array();
 
+	/** @var mysqli */
 	var $conn = null;
 
 	public function __construct() {
