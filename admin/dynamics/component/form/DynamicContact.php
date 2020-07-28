@@ -6,15 +6,15 @@
  * Time: 5:40 PM
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/Component.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/form/Contact.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/Component.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/form/Contact.php');
 
 
 class DynamicContact extends Component {
 	var $contact = array();
 
 	function __construct() {
-		parent::__construct($_SERVER['DOCUMENT_ROOT'] . '/dynamics/html/form/dynamiccontact.html');
+		parent::__construct($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/html/form/dynamiccontact.html');
 
 		$template = new Contact();
 

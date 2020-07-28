@@ -6,9 +6,9 @@
  * Time: 11:59 PM
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/table/CategoryTableElement.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/table/ResourceTableElement.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/table/CountyTableElement.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/table/CategoryTableElement.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/table/ResourceTableElement.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/table/CountyTableElement.php');
 
 class DBManager {
 	var $pageLength = 25;
@@ -39,7 +39,7 @@ class DBManager {
 	function startDbConn() {
 
 
-		$config = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/dynamics/data/db.ini');
+		$config = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . 'admin/dynamics/data/db.ini');
 
 		$servername = $config['servername'];
 		$username = $config['username'];

@@ -9,11 +9,11 @@
 // GET['q'] is set = search term
 // GET['p'] is set = page number
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/page/Page.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/table/TableView.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/data/DBManager.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/data/CategoriesManager.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/data/CountiesManager.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/page/Page.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/table/TableView.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/data/DBManager.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/data/CategoriesManager.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/data/CountiesManager.php');
 
 $page = new Page();
 $manager = new DBManager();

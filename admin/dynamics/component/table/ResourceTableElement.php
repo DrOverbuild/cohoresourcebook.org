@@ -6,7 +6,7 @@
  * Time: 1:54 AM
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/table/TableElement.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/table/TableElement.php');
 
 class ResourceTableElement extends TableElement {
 	var $id;

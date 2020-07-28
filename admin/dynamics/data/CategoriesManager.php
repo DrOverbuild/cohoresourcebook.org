@@ -6,7 +6,7 @@
  * Time: 10:52 AM
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/data/DBManager.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/data/DBManager.php');
 
 class CategoriesManager {
 	var $manager;

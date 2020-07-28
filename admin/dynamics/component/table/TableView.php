@@ -6,16 +6,16 @@
  * Time: 2:05 PM
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/Component.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/form/Form.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/table/TableHeader.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/Component.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/form/Form.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/table/TableHeader.php');
 
 class TableView extends Component {
 	var $title;
 	var $page;
 
 	function __construct($title = '', $class = '', Page $page) {
-		parent::__construct($_SERVER['DOCUMENT_ROOT'] . '/dynamics/html/table.html');
+		parent::__construct($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/html/table.html');
 
 		$this->page = $page;
 

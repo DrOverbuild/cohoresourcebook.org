@@ -6,13 +6,13 @@
  * Time: 3:41 PM
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/Component.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/Component.php');
 
 class Page extends Component {
 	var $headElements = array();
 
 	function __construct() {
-		$_path = $_SERVER['DOCUMENT_ROOT'] . '/dynamics/html/page.html';
+		$_path = $_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/html/page.html';
 		parent::__construct($_path);
 	}
 

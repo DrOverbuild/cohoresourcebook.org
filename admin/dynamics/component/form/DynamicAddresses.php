@@ -6,15 +6,15 @@
  * Time: 5:40 PM
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/Component.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/form/Address.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/Component.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/form/Address.php');
 
 
 class DynamicAddresses extends Component {
 	var $addresses = array();
 
 	function __construct() {
-		parent::__construct($_SERVER['DOCUMENT_ROOT'] . '/dynamics/html/form/dynamicaddresses.html');
+		parent::__construct($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/html/form/dynamicaddresses.html');
 
 		$template = new Address();
 
