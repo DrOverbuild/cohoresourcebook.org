@@ -1,3 +1,9 @@
 
 .DS_Store
 *.ini
+vendor
+._cohodatabase-firebase-adminsdk-w3ovy-3caa0052fb.json
+cohodatabase-firebase-adminsdk-w3ovy-3caa0052fb.json
+composer.json
+composer.lock
+composer.phar
