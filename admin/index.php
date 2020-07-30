@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/page/Page.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/table/TableView.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/data/DBManager.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/page/Page.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/table/TableView.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/data/DBManager.php');
 
 $page = new Page();
 $manager = new DBManager();

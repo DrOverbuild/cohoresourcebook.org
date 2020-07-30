@@ -6,10 +6,10 @@
  * Time: 7:14 PM
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/Component.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/Component.php');
 
 class Address extends Component {
 	function __construct() {
-		parent::__construct($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/html/form/address.html');
+		parent::__construct($_SERVER['DOCUMENT_ROOT'] . '/dynamics/html/form/address.html');
 	}
 }

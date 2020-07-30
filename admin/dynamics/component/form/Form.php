@@ -6,12 +6,12 @@
  * Time: 2:56 PM
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/Component.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/Component.php');
 
 class Form extends Component {
 
 	function __construct() {
-		parent::__construct($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/html/form/form.html');
+		parent::__construct($_SERVER['DOCUMENT_ROOT'] . '/dynamics/html/form/form.html');
 	}
 
 	function addFormElement($formElement) {

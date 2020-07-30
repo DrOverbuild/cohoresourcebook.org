@@ -6,8 +6,8 @@
  * Time: 7:21 PM
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/Component.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/page/Page.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/Component.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/page/Page.php');
 
 class EditForm extends Component {
 	var $page;

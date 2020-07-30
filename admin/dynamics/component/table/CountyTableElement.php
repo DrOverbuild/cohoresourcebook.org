@@ -6,7 +6,7 @@
  * Time: 12:59 AM
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/table/TableElement.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/table/TableElement.php');
 
 class CountyTableElement extends TableElement {
 	var $desc;

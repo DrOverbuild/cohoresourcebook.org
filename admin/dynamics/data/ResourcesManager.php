@@ -6,12 +6,12 @@
  * Time: 12:41 AM
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/form/DynamicAddresses.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/form/Address.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/data/model/AddrModel.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/form/DynamicContact.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/form/Contact.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/data/model/ContModel.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/form/DynamicAddresses.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/form/Address.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/data/model/AddrModel.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/form/DynamicContact.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/form/Contact.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/data/model/ContModel.php');
 
 
 class ResourcesManager {

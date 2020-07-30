@@ -24,7 +24,7 @@
  * Time: 5:03 PM
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/data/DBManager.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/data/DBManager.php');
 
 var_dump($_POST);
 

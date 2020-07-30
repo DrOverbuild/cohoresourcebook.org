@@ -10,14 +10,14 @@
 // `id` not set = add mode
 // POST arg `resource` set = save
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/page/Page.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/form/EditForm.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/data/DBManager.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/data/ResourcesManager.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/data/model/AddrModel.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/data/model/ContModel.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/form/DynamicAddresses.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/component/form/DynamicContact.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/page/Page.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/form/EditForm.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/data/DBManager.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/data/ResourcesManager.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/data/model/AddrModel.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/data/model/ContModel.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/form/DynamicAddresses.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/component/form/DynamicContact.php');
 
 
 ini_set('display_errors', 1);
@@ -29,7 +29,7 @@ error_reporting(E_ALL);
 $manager = new DBManager();
 
 $page = new Page();
-$editForm = new EditForm($_SERVER['DOCUMENT_ROOT'] . '/admin/dynamics/html/form/resourcesedit.html', $page);
+$editForm = new EditForm($_SERVER['DOCUMENT_ROOT'] . '/dynamics/html/form/resourcesedit.html', $page);
 
 $actionTitle = "NEW RESOURCE";
 
