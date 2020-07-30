@@ -64,13 +64,12 @@ if (isset($_GET['id'])) {
 		$hours = $resources['hours'];
 		$documentation = $resources['documentation'];
 
-		$checkedCategories = $resourcesMan->parseIDs($resources['categories']);
-		$checkedCounties = $resourcesMan->parseIDs($resources['counties']);
+		$checkedCategories = $resources['categories'];
+		$checkedCounties = $resources['counties'];
 
+		$addresses = $resourcesMan->loadAddressComponents($resources);
 
-		$addresses = $resourcesMan->loadAddressComponents(intval($id));
-
-		$contacts = $resourcesMan->loadContactComponents(intval($id));
+		$contacts = $resourcesMan->loadContactComponents($resources);
 
 
 		//TODO add form elements here

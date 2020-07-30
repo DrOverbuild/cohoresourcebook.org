@@ -15,6 +15,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/dynamics/data/model/ContModel.php');
 
 
 class ResourcesManager {
+	/** @var DBManager */
 	var $manager;
 
 	/**
@@ -27,7 +28,7 @@ class ResourcesManager {
 
 
 	function addResource($resource) {
-		if (is_null($this->manager->conn)) {
+		if (is_null($this->manager->conn)) { // todo change this to support firebase changes
 			return;
 		}
 
@@ -45,7 +46,7 @@ class ResourcesManager {
 	}
 
 	function editResource($id, $resource) {
-		if (is_null($this->manager->conn)) {
+		if (is_null($this->manager->database)) {
 			return;
 		}
 
@@ -55,7 +56,7 @@ class ResourcesManager {
 			'hours' => $hours,
 			'documentation' => $documentation];
 		 */
-		$stmt = $this->manager->conn->prepare('UPDATE `resources` 
+		$stmt = $this->manager->conn->prepare('UPDATE `resources`
 			SET `name` = ?, `categories` = ?, `counties` = ?, `description` = ?, `tags` = ?, `services` = ?,
 				`hours` = ?, `documentation` = ?
 			WHERE `resources`.`id` = ?');
@@ -66,19 +67,34 @@ class ResourcesManager {
 	}
 
 	function loadResource($id) {
-		$stmt = $this->manager->conn->prepare('SELECT * FROM `resources` WHERE id = ?');
-		$stmt->bind_param('i', $id);
-		$stmt->execute();
-		$result = $stmt->get_result();
+		$resourceSnap = $this->manager->database
+			->getReference('resources')->orderByChild('id')
+			->equalTo($id)->getSnapshot();
 
-		while ($row = $result->fetch_assoc()) {
-			if (isset($row['id'])){
-				return ['name'=>$row['name'], 'desc'=>$row['description'],
-						'tags'=>$row['tags'], 'services'=>$row['services'],
-					    'hours'=>$row['hours'], 'documentation'=>$row['documentation'],
-						'categories'=>$row['categories'], 'counties'=>$row['counties']];
-			}
+		if ($resourceSnap->numChildren() >= 1) {
+			$resourceJSON = array_values($resourceSnap->getValue())[0];
+			return ['name'=>$resourceJSON['name'], 'desc'=>$resourceJSON['description'],
+				'tags'=>$resourceJSON['tags'], 'services'=>$resourceJSON['services'],
+				'hours'=>$resourceJSON['hours'], 'documentation'=>$resourceJSON['documentation'],
+				'categories'=>$resourceJSON['categories'], 'counties'=>$resourceJSON['counties'],
+				'locations'=>$resourceJSON['locations'], 'contact'=>$resourceJSON['contact'], 'id'=>$id];
 		}
+
+//		$stmt = $this->manager->conn->prepare('SELECT * FROM `resources` WHERE id = ?');
+//		$stmt->bind_param('i', $id);
+//		$stmt->execute();
+//		$result = $stmt->get_result();
+//
+//		while ($row = $result->fetch_assoc()) {
+//			if (isset($row['id'])){
+//				return ['name'=>$row['name'], 'desc'=>$row['description'],
+//						'tags'=>$row['tags'], 'services'=>$row['services'],
+//					    'hours'=>$row['hours'], 'documentation'=>$row['documentation'],
+//						'categories'=>$row['categories'], 'counties'=>$row['counties']];
+//			}
+//		}
+
+		return [];
 	}
 
 	function parseIDs($str) {
@@ -99,23 +115,16 @@ class ResourcesManager {
 
 	// ADDRESS METHODS
 
-	function loadAddresses($resourceID, $selectWhat = '*') {
-		$stmt = $this->manager->conn->prepare('SELECT ' . $selectWhat . ' FROM `addresses` WHERE resourceid = ?');
-		$stmt->bind_param('i', $resourceID);
-		$stmt->execute();
-		$result = $stmt->get_result();
-
+	function loadAddresses($resource, $selectWhat = '*') {
 		$addresses = array();
-
-		while ($row = $result->fetch_assoc()) {
+		foreach ($resource['locations'] as $row) {
 			if (isset($row['id'])) {
 				$description = $street1 = $street2 = $city = $state = $zip = '';
-				$resourceID = -1;
 
 				$id = intval($row['id']);
 
-				if (isset($row['description'])) {
-					$description = $row['description'];
+				if (isset($row['desc'])) {
+					$description = $row['desc'];
 				}
 
 				if (isset($row['street1'])) {
@@ -138,11 +147,7 @@ class ResourcesManager {
 					$zip = $row['zip'];
 				}
 
-				if (isset($row['resourceid'])) {
-					$resourceID = intval($row['resourceid']);
-				}
-
-				$address = new AddrModel($description, $street1, $street2, $city, $state, $zip, $id, $resourceID);
+				$address = new AddrModel($description, $street1, $street2, $city, $state, $zip, $id, $resource['id']);
 
 				array_push($addresses, $address);
 			}
@@ -150,10 +155,10 @@ class ResourcesManager {
 		return $addresses;
 	}
 
-	function loadAddressComponents($resourceID) {
+	function loadAddressComponents($resource) {
 		$addresses = new DynamicAddresses();
 
-		foreach ($this->loadAddresses($resourceID) as $row) {
+		foreach ($this->loadAddresses($resource) as $row) {
 			$addresses->addAddrModel($row);
 		}
 
@@ -215,22 +220,15 @@ class ResourcesManager {
 	}
 
 	// CONTACT METHODS
-	function loadContacts($resourceID, $selectWhat = '*') {
-		$stmt = $this->manager->conn->prepare('SELECT ' . $selectWhat . ' FROM `contact` WHERE resourceid = ?');
-		$stmt->bind_param('i', $resourceID);
-		$stmt->execute();
-		$result = $stmt->get_result();
-
+	function loadContacts($resource, $selectWhat = '*') {
 		$contacts = array();
 
-		while ($row = $result->fetch_assoc()) {
+		foreach ($resource['contact'] as $row) {
 			if (isset($row['id'])) {
 				$type = 0 ;
 				$name = $value = '';
-				$resourceID = -1;
 
 				$id = intval($row['id']);
-
 
 				if (isset($row['type'])) {
 					$type = intval($row['type']);
@@ -244,7 +242,7 @@ class ResourcesManager {
 					$value = $row['value'];
 				}
 
-				$address = new ContModel($type, $name, $value, $id, $resourceID);
+				$address = new ContModel($type, $name, $value, $id, $resource['id']);
 
 				array_push($contacts, $address);
 			}
@@ -252,10 +250,10 @@ class ResourcesManager {
 		return $contacts;
 	}
 
-	function loadContactComponents($resourceID) {
+	function loadContactComponents($resource) {
 		$contacts = new DynamicContact();
 
-		foreach ($this->loadContacts($resourceID) as $row) {
+		foreach ($this->loadContacts($resource) as $row) {
 			$contacts->addContModel($row);
 		}
 
