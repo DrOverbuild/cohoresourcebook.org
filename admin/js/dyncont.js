@@ -15,6 +15,8 @@ function getContactHtml() {
     $html.find('.type').attr('name', "contact[" + len + "][type]");
     $html.find('.name').attr('name', "contact[" + len + "][name]");
     $html.find('.value').attr('name', "contact[" + len + "][value]");
+    $html.find('.id').attr('name', "contact[" + len + "][id]");
+    $html.find('.id').attr('value', "0");
 
     return $html.html();
 }

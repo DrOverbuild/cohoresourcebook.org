@@ -39,7 +39,7 @@ class DynamicContact extends Component {
 		return parent::process();
 	}
 
-	function addContact($type, $name, $value) {
+	function addContact($type, $name, $value, $contID = 0) {
 		$contact = new Contact();
 		$locID = count($this->contact);
 
@@ -49,6 +49,7 @@ class DynamicContact extends Component {
 		$contact->loadComponents('NAME_CONT_TYPE', 'contact['.$locID.'][type]');
 		$contact->loadComponents('NAME_CONT_NAME', 'contact['.$locID.'][name]');
 		$contact->loadComponents('NAME_CONT_VALUE', 'contact['.$locID.'][value]');
+		$contact->loadComponents('NAME_CONT_ID', 'contact['.$locID.'][id]');
 
 		$contact->loadComponents('PHONE_SELECTED', '');
 		$contact->loadComponents('EMAIL_SELECTED', '');
@@ -73,11 +74,15 @@ class DynamicContact extends Component {
 
 		$contact->loadComponents('CONT_NAME', $name);
 		$contact->loadComponents('CONT_VALUE', $value);
+		$contact->loadComponents('CONT_ID', $contID);
 
 		array_push($this->contact, $contact);
 	}
 
+	/**
+	 * @param $cont ContModel
+	 */
 	function addContModel($cont) {
-		$this->addContact($cont->type, $cont->name, $cont->value);
+		$this->addContact($cont->type, $cont->name, $cont->value, $cont->id);
 	}
 }

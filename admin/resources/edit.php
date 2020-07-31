@@ -137,28 +137,25 @@ if (isset($_POST['name'])) {
 	if (!$required) { // POST SUCCESS
 		$resourcesMan = new ResourcesManager($manager);
 		$resources = ['name' => $name,
-			'desc' => $desc,
+			'description' => $desc,
 			'tags' => $tags,
 			'services' => $services,
 			'hours' => $hours,
 			'documentation' => $documentation,
-			'categories' => $catStr,
-			'counties' => $countiesStr];
+			'categories' => $_POST['categories'],
+			'counties' => $_POST['counties']
+		];
 		if (isset($_POST['id'])) {
 			// edit category
-			$resourcesMan->editResource(intval($_POST['id']), $resources);
-
 			if (isset($_POST['addresses'])) {
-				$addresssesModel = AddrModel::addressesFromArr($_POST['addresses'], intval($_POST['id']));
+				$resources['locations'] = $_POST['addresses'];
 			}
 
 			if (isset($_POST['contact'])) {
-				$contModel = ContModel::contactsFromArr($_POST['contact'], intval($_POST['id']));
-
+				$resources['contact'] = $_POST['contact'];
 			}
 
-			$resourcesMan->updateAddresses($addresssesModel, intval($_POST['id']));
-			$resourcesMan->updateContacts($contModel, intval($_POST['id']));
+			$resourcesMan->editResource(intval($_POST['id']), $resources);
 
 			$actionResult = "edited";
 			$id = intval($_POST['id']);

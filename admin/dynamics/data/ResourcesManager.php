@@ -26,6 +26,11 @@ class ResourcesManager {
 		$this->manager = $manager;
 	}
 
+	function resourceFromId($id) {
+		return $resourceSnap = $this->manager->database
+			->getReference('resources')->orderByChild('id')
+			->equalTo($id);
+	}
 
 	function addResource($resource) {
 		if (is_null($this->manager->conn)) { // todo change this to support firebase changes
@@ -50,26 +55,18 @@ class ResourcesManager {
 			return;
 		}
 
-		/*
-		 * 'tags' => $tags,
-			'services' => $services,
-			'hours' => $hours,
-			'documentation' => $documentation];
-		 */
-		$stmt = $this->manager->conn->prepare('UPDATE `resources`
-			SET `name` = ?, `categories` = ?, `counties` = ?, `description` = ?, `tags` = ?, `services` = ?,
-				`hours` = ?, `documentation` = ?
-			WHERE `resources`.`id` = ?');
-		$stmt->bind_param('ssssssssi', $resource['name'], $resource['categories'], $resource['counties'],
-			$resource['desc'], $resource['tags'], $resource['services'], $resource['hours'],
-			$resource['documentation'], $id);
-		$stmt->execute();
+		$resource['id'] = $id;
+
+		$value = $this->resourceFromId($id)->getValue();
+		if(sizeof($value) > 0) {
+			$uid = array_keys($value)[0];
+
+			$this->manager->database->getReference('resources')->update([$uid => $resource]);
+		}
 	}
 
 	function loadResource($id) {
-		$resourceSnap = $this->manager->database
-			->getReference('resources')->orderByChild('id')
-			->equalTo($id)->getSnapshot();
+		$resourceSnap = $this->resourceFromId($id)->getSnapshot();
 
 		if ($resourceSnap->numChildren() >= 1) {
 			$resourceJSON = array_values($resourceSnap->getValue())[0];
@@ -79,20 +76,6 @@ class ResourcesManager {
 				'categories'=>$resourceJSON['categories'], 'counties'=>$resourceJSON['counties'],
 				'locations'=>$resourceJSON['locations'], 'contact'=>$resourceJSON['contact'], 'id'=>$id];
 		}
-
-//		$stmt = $this->manager->conn->prepare('SELECT * FROM `resources` WHERE id = ?');
-//		$stmt->bind_param('i', $id);
-//		$stmt->execute();
-//		$result = $stmt->get_result();
-//
-//		while ($row = $result->fetch_assoc()) {
-//			if (isset($row['id'])){
-//				return ['name'=>$row['name'], 'desc'=>$row['description'],
-//						'tags'=>$row['tags'], 'services'=>$row['services'],
-//					    'hours'=>$row['hours'], 'documentation'=>$row['documentation'],
-//						'categories'=>$row['categories'], 'counties'=>$row['counties']];
-//			}
-//		}
 
 		return [];
 	}
@@ -113,8 +96,9 @@ class ResourcesManager {
 		return $idStr;
 	}
 
-	// ADDRESS METHODS
 
+
+	// ADDRESS METHODS
 	function loadAddresses($resource, $selectWhat = '*') {
 		$addresses = array();
 		foreach ($resource['locations'] as $row) {
@@ -165,6 +149,9 @@ class ResourcesManager {
 		return $addresses;
 	}
 
+	/**
+	 * @deprecated because Firebase automatically updates this
+	 */
 	function updateAddresses($submittedAddresses, $resourceID) {
 		/*
 		 * 1. load addresses from database
@@ -195,12 +182,18 @@ class ResourcesManager {
 		}
 	}
 
+	/**
+	 * @deprecated because Firebase automatically updates this
+	 */
 	function deleteAddr(AddrModel $addr) {
 		$stmt = $this->manager->conn->prepare('DELETE FROM `addresses` WHERE id = ?');
 		$stmt->bind_param('i', $addr->id);
 		$stmt->execute();
 	}
 
+	/**
+	 * @deprecated because Firebase automatically updates this
+	 */
 	function updateAddr(AddrModel $addr) {
 		if($addr->id == -1) {
 			$query = 'INSERT INTO `addresses` 
@@ -218,6 +211,8 @@ class ResourcesManager {
 			$stmt->execute();
 		}
 	}
+
+
 
 	// CONTACT METHODS
 	function loadContacts($resource, $selectWhat = '*') {
@@ -260,6 +255,9 @@ class ResourcesManager {
 		return $contacts;
 	}
 
+	/**
+	 * @deprecated because Firebase automatically updates this
+	 */
 	function updateContacts($submittedContacts, $resourceID) {
 		$databaseCont = $this->loadContacts($resourceID, 'id');
 
@@ -282,11 +280,19 @@ class ResourcesManager {
 		}
 	}
 
+	/**
+	 * @deprecated because Firebase automatically updates this
+	 */
+
 	function deleteCont(ContModel $addr) {
 		$stmt = $this->manager->conn->prepare('DELETE FROM `contact` WHERE id = ?');
 		$stmt->bind_param('i', $addr->id);
 		$stmt->execute();
 	}
+
+	/**
+	 * @deprecated because Firebase automatically updates this
+	 */
 
 	function updateCont(ContModel $cont) {
 		if($cont->id == -1) {
