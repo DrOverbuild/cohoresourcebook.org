@@ -141,18 +141,66 @@ if (isset($_POST['name'])) {
 			'tags' => $tags,
 			'services' => $services,
 			'hours' => $hours,
-			'documentation' => $documentation,
-			'categories' => $_POST['categories'],
-			'counties' => $_POST['counties']
+			'documentation' => $documentation
 		];
+
+		// convert string arrays to int arrays
+		if (isset($_POST['counties'])) {
+			$counties = [];
+			foreach ($_POST['counties'] as $county) {
+				array_push($counties, intval($county));
+			}
+
+			$resources['counties'] = $counties;
+		}
+
+		if (isset($_POST['categories'])) {
+			$categories = [];
+			foreach ($_POST['categories'] as $category) {
+				array_push($categories, intval($category));
+			}
+
+			$resources['categories'] = $categories;
+		}
+
 		if (isset($_POST['id'])) {
 			// edit category
 			if (isset($_POST['addresses'])) {
-				$resources['locations'] = $_POST['addresses'];
+				$locations = [];
+
+				foreach ($_POST['addresses'] as $address) {
+
+					$full = [
+						'id'=>intval($address['id']),
+						'desc'=>$address['description'],
+						'street1' => $address['street1'],
+						'street2' => $address['street2'],
+						'city' => $address['city'],
+						'state' => $address['state'],
+						'zip' => $address['zip'],
+					];
+
+					array_push($locations, $full);
+				}
+
+				$resources['locations'] = $locations;
 			}
 
 			if (isset($_POST['contact'])) {
-				$resources['contact'] = $_POST['contact'];
+				$contact = [];
+
+				foreach ($_POST['contact'] as $cont) {
+					$full = [
+						'id' => intval($cont['id']),
+						'name' => $cont['name'],
+						'typeInt'=> intval($cont['type']),
+						'value' => $cont['value']
+					];
+
+					array_push($contact, $full);
+				}
+
+				$resources['contact'] = $contact;
 			}
 
 			$resourcesMan->editResource(intval($_POST['id']), $resources);

@@ -225,8 +225,8 @@ class ResourcesManager {
 
 				$id = intval($row['id']);
 
-				if (isset($row['type'])) {
-					$type = intval($row['type']);
+				if (isset($row['typeInt'])) {
+					$type = intval($row['typeInt']);
 				}
 
 				if (isset($row['name'])) {
